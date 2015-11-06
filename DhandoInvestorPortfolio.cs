@@ -27,7 +27,7 @@ namespace DhandhoTracker
             InitializeComponent();
             this.investorListBox.DataSource = Edgar.FundNames;
             this.investorListBox.SelectedIndex = -1;
-
+            this.WindowState = FormWindowState.Maximized;
             isInitialized = true;
         }
 
@@ -134,12 +134,16 @@ namespace DhandhoTracker
             if ((this.portfolioGrid.SelectedRows != null) && (this.portfolioGrid.SelectedRows.Count > 0))
             {
                 DataTable table = this.portfolioGrid.DataSource as DataTable;
-                this.historyChart.Series[0].Points.Clear();
-                this.historyChart.Series[1].Points.Clear();
+                foreach (var s in historyChart.Series)
+                {
+                    s.Points.Clear();
+                }
+
                 this.portfolio.AddHistoryDataPoints(
                     table.Rows[this.portfolioGrid.SelectedRows[0].Index],
                     this.historyChart.Series[0].Points,
-                    this.historyChart.Series[1].Points);
+                    this.historyChart.Series[1].Points,
+                    this.historyChart.Series[2].Points);
 
                 foreach(var s in historyChart.Series)
                 {

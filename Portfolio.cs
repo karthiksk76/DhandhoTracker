@@ -198,7 +198,7 @@ namespace DhandhoTracker
             }
         }
 
-        internal void AddHistoryDataPoints(DataRow dataRow, DataPointCollection countSeries, DataPointCollection valueSeries)
+        internal void AddHistoryDataPoints(DataRow dataRow, DataPointCollection countSeries, DataPointCollection valueSeries, DataPointCollection sharePriceSeries)
         {
             countSeries.Clear();
             valueSeries.Clear();
@@ -208,6 +208,7 @@ namespace DhandhoTracker
             {
                 countSeries.AddXY(p.Timestamp, ((ulong)p.Count));
                 valueSeries.AddXY(p.Timestamp, ((ulong)p.Value) * 1000);
+                sharePriceSeries.AddXY(p.Timestamp, (((double)p.Value) * 1000) / p.Count);
             }
         }
 
