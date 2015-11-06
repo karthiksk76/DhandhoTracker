@@ -9,6 +9,7 @@ using System.IO;
 using System.Net;
 using System.Xml;
 using System.Xml.Serialization;
+using System.Threading;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 
@@ -38,7 +39,7 @@ namespace DhandhoTracker
 
             Disable();
 
-            Task task = Task.Run(() => { Download13F(fundName); });
+            ThreadPool.QueueUserWorkItem(this.Download13F, fundName);
         }
 
         void Disable()
@@ -48,6 +49,11 @@ namespace DhandhoTracker
             this.progressBar.Visible = true;
             this.weightingChart.Visible = false;
             this.historyChart.Visible = false;
+            foreach (var series in this.historyChart.Series)
+            {
+                series.Points.Clear();
+                series.IsVisibleInLegend = false;
+            }
         }
 
         void Enable()
@@ -58,6 +64,9 @@ namespace DhandhoTracker
             this.investorListBox.Enabled = true;
             this.portfolio.AddWeightingDataPoints(this.weightingChart.Series[0].Points);
             this.weightingChart.Visible = true;
+
+            
+
             this.historyChart.Visible = true;
         }
 
@@ -75,8 +84,9 @@ namespace DhandhoTracker
             return body;
         }
 
-        void Download13F(string fundName)
+        void Download13F(object args)
         {
+            string fundName = args as string;
             HtmlAgilityPack.HtmlDocument html = new HtmlAgilityPack.HtmlDocument();
             html.LoadHtml(GetWebPage(Edgar.GetQueryUrl(fundName)));
 
@@ -130,7 +140,20 @@ namespace DhandhoTracker
                     table.Rows[this.portfolioGrid.SelectedRows[0].Index],
                     this.historyChart.Series[0].Points,
                     this.historyChart.Series[1].Points);
+
+                foreach(var s in historyChart.Series)
+                {
+                    if (s.Points.Count > 0)
+                    {
+                        s.IsVisibleInLegend = true;
+                    }
+                }
             }
+        }
+
+        private void DhandoInvestorPortfolio_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

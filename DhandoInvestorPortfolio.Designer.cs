@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.topAlignmentTable = new System.Windows.Forms.TableLayoutPanel();
@@ -188,32 +188,34 @@
             // 
             // historyChart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.historyChart.ChartAreas.Add(chartArea1);
+            chartArea3.Name = "ChartArea1";
+            this.historyChart.ChartAreas.Add(chartArea3);
             this.historyChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.historyChart.Legends.Add(legend1);
+            legend3.Name = "Legend1";
+            this.historyChart.Legends.Add(legend3);
             this.historyChart.Location = new System.Drawing.Point(3, 22);
             this.historyChart.Name = "historyChart";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedColumn;
-            series1.Legend = "Legend1";
-            series1.LegendText = "Share Count (Left)";
-            series1.MarkerStep = 4;
-            series1.Name = "stockCountSeries";
-            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
-            series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.UInt64;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedColumn;
-            series2.Legend = "Legend1";
-            series2.LegendText = "Value in Dollars (Right)";
-            series2.MarkerStep = 4;
-            series2.Name = "valueSeries";
-            series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
-            series2.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
-            series2.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.UInt64;
-            this.historyChart.Series.Add(series1);
-            this.historyChart.Series.Add(series2);
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedColumn;
+            series4.IsVisibleInLegend = false;
+            series4.Legend = "Legend1";
+            series4.LegendText = "Share Count (Left)";
+            series4.MarkerStep = 4;
+            series4.Name = "stockCountSeries";
+            series4.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            series4.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.UInt64;
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedColumn;
+            series5.IsVisibleInLegend = false;
+            series5.Legend = "Legend1";
+            series5.LegendText = "Value in Dollars (Right)";
+            series5.MarkerStep = 4;
+            series5.Name = "valueSeries";
+            series5.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            series5.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
+            series5.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.UInt64;
+            this.historyChart.Series.Add(series4);
+            this.historyChart.Series.Add(series5);
             this.historyChart.Size = new System.Drawing.Size(1028, 380);
             this.historyChart.TabIndex = 0;
             this.historyChart.Text = "chart1";
@@ -270,21 +272,21 @@
             // 
             // weightingChart
             // 
-            chartArea2.Name = "ChartArea1";
-            this.weightingChart.ChartAreas.Add(chartArea2);
+            chartArea4.Name = "ChartArea1";
+            this.weightingChart.ChartAreas.Add(chartArea4);
             this.weightingChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Name = "Legend1";
-            this.weightingChart.Legends.Add(legend2);
+            legend4.Name = "Legend1";
+            this.weightingChart.Legends.Add(legend4);
             this.weightingChart.Location = new System.Drawing.Point(3, 22);
             this.weightingChart.Name = "weightingChart";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series3.Label = "#PERCENT";
-            series3.Legend = "Legend1";
-            series3.LegendText = "#VALX";
-            series3.Name = "weightingSeries";
-            series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.String;
-            this.weightingChart.Series.Add(series3);
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series6.Label = "#PERCENT";
+            series6.Legend = "Legend1";
+            series6.LegendText = "#VALX";
+            series6.Name = "weightingSeries";
+            series6.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.String;
+            this.weightingChart.Series.Add(series6);
             this.weightingChart.Size = new System.Drawing.Size(691, 771);
             this.weightingChart.TabIndex = 0;
             // 
@@ -298,6 +300,7 @@
             this.Name = "DhandoInvestorPortfolio";
             this.Padding = new System.Windows.Forms.Padding(5);
             this.Text = "Dhando Investor Portfolio";
+            this.Load += new System.EventHandler(this.DhandoInvestorPortfolio_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
