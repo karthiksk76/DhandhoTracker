@@ -90,8 +90,11 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Dependencies\" />
+    <Content Include="Dependencies\HTMLParser\HtmlAgilityPack.dll" />
+    <Content Include="Dependencies\HTMLParser\HtmlAgilityPack.pdb" />
+    <Content Include="Dependencies\HTMLParser\HtmlAgilityPack.XML" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
