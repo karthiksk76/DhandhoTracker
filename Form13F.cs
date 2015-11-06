@@ -39,10 +39,17 @@ namespace DhandhoTracker
         [XmlElement("infoTable")]
         public Position[] Positions;
 
-        internal static Form13F Parse(string xml)
+        public DateTime Timestamp { get; set; }
+
+        public bool IsAmendment { get; set; }
+
+        internal static Form13F Parse(DateTime timeStamp, string xml, bool isAmendment)
         {
             XmlSerializer ser = new XmlSerializer(typeof(Form13F), XML_NS);
-            return ser.Deserialize(new StringReader(xml)) as Form13F;
+            Form13F form = ser.Deserialize(new StringReader(xml)) as Form13F;
+            form.Timestamp = timeStamp;
+            form.IsAmendment = isAmendment;
+            return form;
         }
     }
 }

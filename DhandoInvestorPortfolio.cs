@@ -25,6 +25,9 @@ namespace DhandhoTracker
         {
             isInitialized = false;
             InitializeComponent();
+            this.portfolioGrid.Visible = false;
+            this.historyChart.Visible = false;
+            this.weightingChart.Visible = false;
             this.investorListBox.DataSource = Edgar.FundNames;
             this.investorListBox.SelectedIndex = -1;
             this.WindowState = FormWindowState.Maximized;
@@ -44,7 +47,7 @@ namespace DhandhoTracker
 
         void Disable()
         {
-            this.portfolioGrid.Enabled = false;
+            this.portfolioGrid.Visible = false;
             this.investorListBox.Enabled = false;
             this.progressBar.Visible = true;
             this.weightingChart.Visible = false;
@@ -59,69 +62,21 @@ namespace DhandhoTracker
         void Enable()
         {
             this.portfolioGrid.DataSource = this.portfolio.ToTable();
+            this.portfolioGrid.Visible = true;
             this.portfolioGrid.Enabled = true;
             this.progressBar.Visible = false;
             this.investorListBox.Enabled = true;
-            this.portfolio.AddWeightingDataPoints(this.weightingChart.Series[0].Points);
-            this.weightingChart.Visible = true;
-
-            
-
-            this.historyChart.Visible = true;
-        }
-
-        string GetWebPage(string uri)
-        {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
-            request.Method = WebRequestMethods.Http.Get;
-            WebResponse response = request.GetResponse();
-            string body = null;
-            using (StreamReader rdr = new StreamReader(response.GetResponseStream()))
-            {
-                body = rdr.ReadToEnd();
-            }
-
-            return body;
         }
 
         void Download13F(object args)
         {
-            string fundName = args as string;
-            HtmlAgilityPack.HtmlDocument html = new HtmlAgilityPack.HtmlDocument();
-            html.LoadHtml(GetWebPage(Edgar.GetQueryUrl(fundName)));
-
-            HtmlNode table = null;
-            HtmlNodeCollection tables = html.DocumentNode.SelectNodes("//table[@summary]");
-            foreach (HtmlNode t in tables)
-            {
-                if (t.Attributes["summary"].Value == "Results")
-                {
-                    table = t;
-                }
-            }
-
-            HtmlNodeCollection rows = table.SelectNodes("tr");
             this.portfolio = new Portfolio();
-            for (int i = 1; (i < rows.Count) && (i <= 6); ++i)
+            foreach (Form13F form in Edgar.FetchForm13Fs(args as string, 6))
             {
-                HtmlNode row = rows[i];
-                HtmlNodeCollection cols = row.SelectNodes("td");
-
-                string link = null;
-                foreach (HtmlNode a in cols[1].SelectNodes("a[@href]"))
-                {
-                    link = a.Attributes["href"].Value;
-
-                    break;
-                }
-
-                string date = cols[3].InnerText;
-                string form = GetWebPage(Edgar.GetInfoTableUrl(fundName, link));
-                portfolio.Add(DateTime.Parse(date),Form13F.Parse(form));
+                portfolio.Add(form);
             }
 
-            this.Invoke(new EnableDelegate(this.Enable));
-            
+            this.Invoke(new EnableDelegate(this.Enable));           
         }
 
         private void portfolioGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -139,19 +94,23 @@ namespace DhandhoTracker
                     s.Points.Clear();
                 }
 
-                this.portfolio.AddHistoryDataPoints(
+                this.weightingChart.Series[0].Points.Clear();
+
+                this.portfolio.AddChartDataPoints(
                     table.Rows[this.portfolioGrid.SelectedRows[0].Index],
+                    this.weightingChart.Series[0].Points,
                     this.historyChart.Series[0].Points,
                     this.historyChart.Series[1].Points,
                     this.historyChart.Series[2].Points);
 
-                foreach(var s in historyChart.Series)
+                this.historyChart.Visible = false;
+                foreach (var s in historyChart.Series)
                 {
-                    if (s.Points.Count > 0)
-                    {
-                        s.IsVisibleInLegend = true;
-                    }
+                    this.historyChart.Visible |= (s.Points.Count > 0);
+                    s.IsVisibleInLegend = (s.Points.Count > 0);
                 }
+
+                this.weightingChart.Visible = (this.weightingChart.Series[0].Points.Count > 0);
             }
         }
 

@@ -28,16 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.topAlignmentTable = new System.Windows.Forms.TableLayoutPanel();
@@ -152,6 +152,7 @@
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
             this.splitContainer2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.splitContainer2.Name = "splitContainer2";
@@ -167,15 +168,15 @@
             this.splitContainer2.Panel2.Controls.Add(this.groupBox3);
             this.splitContainer2.Panel2MinSize = 50;
             this.splitContainer2.Size = new System.Drawing.Size(1554, 637);
-            this.splitContainer2.SplitterDistance = 847;
+            this.splitContainer2.SplitterDistance = 1001;
             this.splitContainer2.TabIndex = 0;
             // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.groupBox5, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.groupBox2, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.groupBox4, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -183,74 +184,73 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(847, 637);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1001, 637);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.historyChart);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox5.Location = new System.Drawing.Point(3, 320);
+            this.groupBox5.Location = new System.Drawing.Point(3, 17);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox5.Size = new System.Drawing.Size(841, 315);
+            this.groupBox5.Size = new System.Drawing.Size(543, 618);
             this.groupBox5.TabIndex = 1;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "History";
             // 
             // historyChart
             // 
-            chartArea1.AlignmentOrientation = ((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations)((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Vertical | System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal)));
-            chartArea1.Name = "ChartArea1";
-            chartArea2.Name = "ChartArea2";
-            chartArea3.Name = "ChartArea3";
-            this.historyChart.ChartAreas.Add(chartArea1);
+            chartArea2.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea2.AxisX.IntervalOffsetType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Months;
+            chartArea2.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea2.Name = "ChartArea1";
+            chartArea3.Name = "ChartArea2";
+            chartArea4.Name = "ChartArea3";
             this.historyChart.ChartAreas.Add(chartArea2);
             this.historyChart.ChartAreas.Add(chartArea3);
+            this.historyChart.ChartAreas.Add(chartArea4);
             this.historyChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.historyChart.Legends.Add(legend1);
+            legend2.Name = "Legend1";
+            this.historyChart.Legends.Add(legend2);
             this.historyChart.Location = new System.Drawing.Point(3, 17);
             this.historyChart.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.historyChart.Name = "historyChart";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedColumn;
-            series1.IsValueShownAsLabel = true;
-            series1.IsVisibleInLegend = false;
-            series1.Label = "#VALY";
-            series1.Legend = "Legend1";
-            series1.LegendText = "Shares";
-            series1.MarkerStep = 4;
-            series1.Name = "stockCountSeries";
-            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
-            series1.YValuesPerPoint = 4;
-            series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.UInt64;
-            series2.ChartArea = "ChartArea2";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedColumn;
-            series2.IsValueShownAsLabel = true;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar;
             series2.IsVisibleInLegend = false;
-            series2.Label = "$#VALY";
+            series2.Label = "$#VALY{N2}";
             series2.Legend = "Legend1";
-            series2.LegendText = "Value ($) ";
-            series2.MarkerStep = 4;
-            series2.Name = "valueSeries";
+            series2.LegendText = "Share Price";
+            series2.Name = "sharePriceSeries";
             series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
-            series2.YValuesPerPoint = 4;
-            series2.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.UInt64;
-            series3.ChartArea = "ChartArea3";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedColumn;
+            series2.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            series3.ChartArea = "ChartArea2";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar;
+            series3.IsValueShownAsLabel = true;
             series3.IsVisibleInLegend = false;
-            series3.Label = "$#VALY{N2}";
+            series3.Label = "$#VALY{N2}M";
             series3.Legend = "Legend1";
-            series3.LegendText = "Share Price";
-            series3.Name = "sharePriceSeries";
+            series3.LegendText = "Value ";
+            series3.MarkerStep = 4;
+            series3.Name = "valueSeries";
             series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
             series3.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            this.historyChart.Series.Add(series1);
+            series4.ChartArea = "ChartArea3";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar;
+            series4.IsValueShownAsLabel = true;
+            series4.IsVisibleInLegend = false;
+            series4.Label = "#VALY{N2}K";
+            series4.Legend = "Legend1";
+            series4.LegendText = "Shares";
+            series4.Name = "stockCountSeries";
+            series4.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            series4.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             this.historyChart.Series.Add(series2);
             this.historyChart.Series.Add(series3);
-            this.historyChart.Size = new System.Drawing.Size(835, 296);
+            this.historyChart.Series.Add(series4);
+            this.historyChart.Size = new System.Drawing.Size(537, 599);
             this.historyChart.TabIndex = 0;
             this.historyChart.Text = "chart1";
             // 
@@ -262,7 +262,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox2.Size = new System.Drawing.Size(841, 314);
+            this.groupBox2.Size = new System.Drawing.Size(995, 314);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Current Portfolio";
@@ -281,20 +281,20 @@
             this.portfolioGrid.ReadOnly = true;
             this.portfolioGrid.RowTemplate.Height = 28;
             this.portfolioGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.portfolioGrid.Size = new System.Drawing.Size(835, 295);
+            this.portfolioGrid.Size = new System.Drawing.Size(989, 295);
             this.portfolioGrid.TabIndex = 0;
             this.portfolioGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.portfolioGrid_CellFormatting);
             this.portfolioGrid.SelectionChanged += new System.EventHandler(this.portfolioGrid_SelectionChanged);
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.groupBox4);
+            this.groupBox3.Controls.Add(this.groupBox5);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox3.Size = new System.Drawing.Size(703, 637);
+            this.groupBox3.Size = new System.Drawing.Size(549, 637);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             // 
@@ -302,34 +302,35 @@
             // 
             this.groupBox4.Controls.Add(this.weightingChart);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox4.Location = new System.Drawing.Point(3, 17);
+            this.groupBox4.Location = new System.Drawing.Point(3, 320);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox4.Size = new System.Drawing.Size(697, 618);
+            this.groupBox4.Size = new System.Drawing.Size(995, 315);
             this.groupBox4.TabIndex = 0;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Weighting";
             // 
             // weightingChart
             // 
-            chartArea4.Name = "ChartArea1";
-            this.weightingChart.ChartAreas.Add(chartArea4);
+            chartArea1.Area3DStyle.Enable3D = true;
+            chartArea1.Name = "ChartArea1";
+            this.weightingChart.ChartAreas.Add(chartArea1);
             this.weightingChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Name = "Legend1";
-            this.weightingChart.Legends.Add(legend2);
+            legend1.Name = "Legend1";
+            this.weightingChart.Legends.Add(legend1);
             this.weightingChart.Location = new System.Drawing.Point(3, 17);
             this.weightingChart.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.weightingChart.Name = "weightingChart";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series4.Label = "#PERCENT";
-            series4.Legend = "Legend1";
-            series4.LegendText = "#VALX";
-            series4.Name = "weightingSeries";
-            series4.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.String;
-            this.weightingChart.Series.Add(series4);
-            this.weightingChart.Size = new System.Drawing.Size(691, 599);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Label = "#PERCENT";
+            series1.Legend = "Legend1";
+            series1.LegendText = "#VALX";
+            series1.Name = "weightingSeries";
+            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.String;
+            this.weightingChart.Series.Add(series1);
+            this.weightingChart.Size = new System.Drawing.Size(989, 296);
             this.weightingChart.TabIndex = 0;
             // 
             // DhandoInvestorPortfolio

@@ -136,17 +136,56 @@ namespace DhandhoTracker
     {
         Dictionary<string, PortfolioEntry> entries;
 
+        List<Form13F> ammendments;
+
         DateTime latestTimestamp;
         DateTime previousTimestamp;
+        ulong totalValue;
 
         internal Portfolio()
         {
             entries = new Dictionary<string, PortfolioEntry>();
+            ammendments = new List<Form13F>();
             latestTimestamp = previousTimestamp = DateTime.MinValue;
         }
 
-        internal void Add(DateTime date, Form13F form)
+        internal void Add(Form13F form)
         {
+            if (form.IsAmendment)
+            {
+                ammendments.Add(form);
+                return;
+            }
+
+            ulong formValue = 0;
+            if (ammendments.Count > 0)
+            {
+                foreach (var ammendment in ammendments)
+                {
+                    ammendment.IsAmendment = false;
+                    ammendment.Timestamp = form.Timestamp;
+                    formValue += ProcessForm(ammendment);
+                }
+
+                ammendments.Clear();
+            }
+
+            formValue += ProcessForm(form);
+
+            if (form.Timestamp > latestTimestamp)
+            {
+                latestTimestamp = form.Timestamp;
+                totalValue = formValue;
+            }
+            else if (form.Timestamp > previousTimestamp)
+            {
+                previousTimestamp = form.Timestamp;
+            }
+        }
+
+        ulong ProcessForm(Form13F form)
+        {
+            ulong formValue = 0;
             foreach (var position in form.Positions)
             {
                 string key = PortfolioEntry.GetKey(position.Company, position.Class);
@@ -156,19 +195,16 @@ namespace DhandhoTracker
                     pe = new PortfolioEntry(position.Company, position.Class);
                     entries[key] = pe;
                 }
-                
 
-                pe.AddPoint(new ShareDataPoint(date, position.Shares.Amount, position.Value));
+
+                pe.AddPoint(new ShareDataPoint(
+                    form.Timestamp,
+                    position.Shares.Amount,
+                    position.Value));
+                formValue += position.Value;
             }
 
-            if (date > latestTimestamp)
-            {
-                latestTimestamp = date;
-            }
-            else if (date > previousTimestamp)
-            {
-                previousTimestamp = date;
-            }
+            return formValue;
         }
 
         internal DataTable ToTable()
@@ -186,30 +222,30 @@ namespace DhandhoTracker
             return table;
         }
 
-        internal void AddWeightingDataPoints(DataPointCollection dataPoints)
-        {
-            dataPoints.Clear();
-            foreach(PortfolioEntry pe in entries.Values)
-            {
-                if ((pe.DataPoints.Count > 0) && (pe.DataPoints[0].Timestamp == latestTimestamp))
-                {
-                    dataPoints.AddXY(pe.Company, pe.DataPoints[0].Value);
-                }
-            }
-        }
-
-        internal void AddHistoryDataPoints(DataRow dataRow, DataPointCollection countSeries, DataPointCollection valueSeries, DataPointCollection sharePriceSeries)
+        internal void AddChartDataPoints(
+            DataRow dataRow, 
+            DataPointCollection weightingSeries,
+            DataPointCollection sharePriceSeries,
+            DataPointCollection valueSeries,
+            DataPointCollection countSeries)
         {
             countSeries.Clear();
             valueSeries.Clear();
             string key = PortfolioEntry.GetKey(dataRow);
             PortfolioEntry pe = entries[key];
+            ulong value = 0;
             foreach (var p in pe.DataPoints)
             {
-                countSeries.AddXY(p.Timestamp, ((ulong)p.Count));
-                valueSeries.AddXY(p.Timestamp, ((ulong)p.Value) * 1000);
+                if (p.Timestamp == latestTimestamp)
+                {
+                    value = p.Value;
+                }
+                countSeries.AddXY(p.Timestamp, ((double)p.Count)/1000);
+                valueSeries.AddXY(p.Timestamp, ((double)p.Value) / 1000);
                 sharePriceSeries.AddXY(p.Timestamp, (((double)p.Value) * 1000) / p.Count);
             }
+            weightingSeries.AddXY(pe.Company, value);
+            weightingSeries.AddXY("Other", totalValue);
         }
 
         internal static void FormatCell(DataGridViewCellFormattingEventArgs e)
