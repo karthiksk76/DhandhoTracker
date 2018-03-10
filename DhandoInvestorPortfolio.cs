@@ -71,7 +71,7 @@ namespace DhandhoTracker
         void Download13F(object args)
         {
             this.portfolio = new Portfolio();
-            foreach (Form13F form in Edgar.FetchForm13Fs(args as string, 6))
+            foreach (Form13F form in Edgar.FetchForm13Fs(args as string, 10))
             {
                 portfolio.Add(form);
             }
@@ -97,7 +97,7 @@ namespace DhandhoTracker
                 this.weightingChart.Series[0].Points.Clear();
 
                 this.portfolio.AddChartDataPoints(
-                    table.Rows[this.portfolioGrid.SelectedRows[0].Index],
+                    (this.portfolioGrid.SelectedRows[0].DataBoundItem as DataRowView).Row,
                     this.weightingChart.Series[0].Points,
                     this.historyChart.Series[0].Points,
                     this.historyChart.Series[1].Points,

@@ -66,6 +66,7 @@ namespace DhandhoTracker
             row["Class"] = Class;
             row["Shares"] = 0;
             row["Value(1000)"] = 0;
+            row["Debug"] = "";
 
             bool isStaleRow = false;
             IndicatorType indicator = IndicatorType.None;
@@ -214,6 +215,7 @@ namespace DhandhoTracker
             {
                 table.Columns.Add(colName);
             }
+            table.Columns.Add("Debug");
             foreach (PortfolioEntry pe in entries.Values)
             {
                 pe.AddTo(latestTimestamp, previousTimestamp, table);
