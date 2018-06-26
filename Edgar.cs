@@ -15,7 +15,9 @@ namespace DhandhoTracker
             {"ICAHN CAPITAL LP(Carl Icahn)", "0000921669" },
             {"GOTHAM ASSET MANAGEMENT, LLC (Joel Greenblatt: Author of \"Little book that beat the street\"):", "0001510387" },
             {"BILL & MELINDA GATES FOUNDATION TRUST (Bill Gates)" , "0001166559"},
-            { "GREENLIGHT CAPITAL INC (David Einhorn)", "0001079114" }
+            {"GREENLIGHT CAPITAL INC (David Einhorn)", "0001079114" },
+            {"AQUAMARINE CAPITAL LLC (Guy Spier : Author of \"The Education of a Value Investor\"", "0001404599"},
+            { "BAUPOST GROUP LLC (Seth Klarman}", "0001061768" }
         };        
 
         internal static IList<string> FundNames { get { return new List<string>(s_funds.Keys); } }

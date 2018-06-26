@@ -34,6 +34,13 @@ namespace DhandhoTracker
 
     internal class PortfolioEntry
     {
+        static Dictionary<string, string> s_SynonymousHoldings = new Dictionary<string, string>()
+        { 
+            { "WELLS FARGO & CO NEW", "WELLS FARGO CO"},
+
+            { "WELLS FARGO CO NEW", "WELLS FARGO CO"}
+        };
+
         internal static string[] s_ColumnNames = new string[] { "Company", "Class", "Shares", "Indicator", "Value(1000)" };
 
         public string Company { get; set; }
@@ -56,6 +63,11 @@ namespace DhandhoTracker
 
         internal static string GetKey(string company, string cls)
         {
+            if (s_SynonymousHoldings.ContainsKey(company))
+            {
+                company = s_SynonymousHoldings[company];
+            }
+
             return string.Format("{0}({1})", company.ToLower(), cls.ToLower());
         }
 
