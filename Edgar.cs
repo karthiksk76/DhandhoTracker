@@ -17,7 +17,8 @@ namespace DhandhoTracker
             {"BILL & MELINDA GATES FOUNDATION TRUST (Bill Gates)" , "0001166559"},
             {"GREENLIGHT CAPITAL INC (David Einhorn)", "0001079114" },
             {"AQUAMARINE CAPITAL LLC (Guy Spier : Author of \"The Education of a Value Investor\"", "0001404599"},
-            { "BAUPOST GROUP LLC (Seth Klarman}", "0001061768" }
+            { "BAUPOST GROUP LLC (Seth Klarman}", "0001061768" },
+            { "DAILY JOURNAL CORP (Charlie Munger}", "0000783412" }
         };        
 
         internal static IList<string> FundNames { get { return new List<string>(s_funds.Keys); } }
@@ -26,6 +27,7 @@ namespace DhandhoTracker
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
             request.Method = WebRequestMethods.Http.Get;
+            request.UserAgent = "karthik karthiksk@msn.com";
             WebResponse response = request.GetResponse();
             string body = null;
             using (StreamReader rdr = new StreamReader(response.GetResponseStream()))
