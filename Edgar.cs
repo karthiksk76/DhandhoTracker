@@ -26,6 +26,7 @@ namespace DhandhoTracker
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
             request.Method = WebRequestMethods.Http.Get;
+            request.UserAgent = "karthik karthiksk@msn.com";
             WebResponse response = request.GetResponse();
             string body = null;
             using (StreamReader rdr = new StreamReader(response.GetResponseStream()))
