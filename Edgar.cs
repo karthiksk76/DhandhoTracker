@@ -18,7 +18,8 @@ namespace DhandhoTracker
             {"GREENLIGHT CAPITAL INC (David Einhorn)", "0001079114" },
             {"AQUAMARINE CAPITAL LLC (Guy Spier : Author of \"The Education of a Value Investor\"", "0001404599"},
             { "BAUPOST GROUP LLC (Seth Klarman}", "0001061768" },
-            { "DAILY JOURNAL CORP (Charlie Munger}", "0000783412" }
+            { "DAILY JOURNAL CORP (Charlie Munger}", "0000783412" },
+            {"SCION ASSET MGMT (Big short : Micheal Burry)", "00001649339"}
         };        
 
         internal static IList<string> FundNames { get { return new List<string>(s_funds.Keys); } }
